@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import './App.css';
 import Radium, {StyleRoot} from 'radium';
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
 
 class App extends Component {
   state = {
@@ -70,17 +70,23 @@ class App extends Component {
       persons = (
         <div>
           { 
-            this.state.persons.map((person, index) => {
-              return (
-                <Person 
-                  name={person.name} 
-                  age={person.age}
-                  key={person.id}
-                  click={this.deletePersonHandler.bind(this, index)}
-                  changed={(event) => this.nameChangedHandler(event, person.id)}
-                  />
-              );
-            })
+            <Persons 
+              persons={this.state.persons}
+              click={this.deletePersonHandler}
+              changed={this.nameChangedHandler}
+            />
+
+            // this.state.persons.map((person, index) => {
+            //   return (
+            //     <Person 
+            //       name={person.name} 
+            //       age={person.age}
+            //       key={person.id}
+            //       click={this.deletePersonHandler.bind(this, index)}
+            //       changed={(event) => this.nameChangedHandler(event, person.id)}
+            //       />
+            //   );
+            // })
           }
             {/* <Person 
               name={this.state.persons[0].name} 
@@ -92,7 +98,7 @@ class App extends Component {
               changed={this.nameChangedHandler}
               >Hobbies: Racing</Person>
             <Person 
-              name={this.state.persons[2].name} 
+              name={this.state.persons[2].name} x
               age={this.state.persons[2].age}/> */}
           </div>
       );
