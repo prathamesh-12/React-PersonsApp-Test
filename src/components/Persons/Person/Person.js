@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Auxillary from '../../hoc/Auxillary';
 
 import './Person.css';
 
@@ -33,11 +34,13 @@ class Person extends Component {
 
         return (
         // <p>I am {props.name} and I am {Math.floor(Math.random()*30)} years old</p>
-            <div className="Person" style={this.style}>
+            // <div className="Person" style={this.style}>
+            <Auxillary>
                 <p onClick={this.props.click}>I am {this.props.name} and I am {this.props.age} years old!</p>
                 <p>{this.props.children}</p>
                 <input type="text" onChange={this.props.changed} value={this.props.name}/>
-            </div>
+            </Auxillary>
+            //</div>
         );
     }
 
