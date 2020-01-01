@@ -16,7 +16,8 @@ class App extends Component {
       {name: "Raj", age: "10", id: "cc33"}
     ],
     otherState: "Some Other value",
-    showPersons: false
+    showPersons: false,
+    showCockpit: true
   }
 
   switchNameHandler = (newName) => {
@@ -53,6 +54,12 @@ class App extends Component {
     const personsArray = [...this.state.persons];
     personsArray.splice(index, 1);
     this.setState({ persons: personsArray });
+  }
+
+  toggleCockpit = () => {
+    this.setState({
+      showCockpit: false
+    });
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -98,18 +105,24 @@ class App extends Component {
           </div>
       );
     }
-
-    
-
-    return (
-        <div className="App">
-          
-            <Cockpit 
+    let cockpit = null;
+    if (this.state.showCockpit) {
+      cockpit = (
+        <Cockpit 
               persons={this.state.persons}
               clicked={this.togglePersonsHandler}
               showPersons={this.state.showPersons}
               title={this.props.appTitle}
             />
+      );
+    }
+
+    
+
+    return (
+        <div className="App">
+            <button onClick={this.toggleCockpit}>Hide Cockpit</button>
+            {cockpit}
             {persons}
         </div>
     );
